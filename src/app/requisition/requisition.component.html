@@ -1,7 +1,3 @@
-<p>
-  {{title}}
-</p>
-
 <div *ngIf="!post; else forminfo">
   <form [formGroup]="rForm" (ngSubmit)="addPost(rForm.value)">
     <md-radio-group class="example-radio-group" formControlName="type">
