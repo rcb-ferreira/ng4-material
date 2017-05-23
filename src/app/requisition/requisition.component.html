@@ -1,0 +1,40 @@
+<p>
+  {{title}}
+</p>
+
+<div *ngIf="!post; else forminfo">
+  <form [formGroup]="rForm" (ngSubmit)="addPost(rForm.value)">
+    <md-radio-group class="example-radio-group" formControlName="type">
+      <md-radio-button class="example-radio-button" *ngFor="let type of types" [value]="type">
+        {{type}}
+      </md-radio-button>
+      
+    </md-radio-group>
+    <md-hint align="end" *ngIf="!rForm.controls['type'].valid && rForm.controls['type'].touched">Please indicate the requisition type</md-hint>
+    
+    <br>
+    <md-select placeholder="Site" formControlName="site">
+      <md-option *ngFor="let site of sites" [value]="site">
+        {{site.viewValue}}
+      </md-option>
+    </md-select>
+    <md-hint align="end" *ngIf="!rForm.controls['site'].valid && rForm.controls['site'].touched">Please indicate the requisition site</md-hint>
+
+    <br>
+    <md-input-container class="example-full-width">
+      <input mdInput  type="text" formControlName="name" placeholder="name">
+      <md-hint  align="end" *ngIf="!rForm.controls['name'].valid && rForm.controls['name'].touched">Name Please</md-hint>
+    </md-input-container>
+
+    <br>
+    <button md-raised-button type="submit" color="primary" [disabled]="!rForm.valid">Raised button</button>
+  </form>
+</div>
+
+<ng-template #forminfo>
+  <div class="form-container">
+    <div class="row columns">
+        <h1>{{ post | json }}</h1>
+    </div>
+  </div>
+</ng-template>
