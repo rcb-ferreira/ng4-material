@@ -31,3 +31,7 @@ body {
 	line-height: 20px;
 	text-transform: uppercase;
 }
+
+.mat-toolbar.mat-primary {
+	background: #333 !important;
+}
