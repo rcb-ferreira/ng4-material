@@ -1,1 +1,53 @@
+.demo-basic {
+  padding: 0;
+}
 
+.demo-basic .mat-card-content {
+  padding: 16px;
+}
+
+.demo-full-width {
+  width: 100%;
+}
+
+.demo-card {
+  margin: 16px;
+}
+
+.md-button-full {
+    width: 100%;
+    display: block;
+    text-transform: uppercase;
+    margin: 30px 0;
+}
+
+section,
+md-radio-button,
+md-input-container {
+    display: flex;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.mat-select {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.section-position {
+    display: block;
+    border-left: 1px solid #333;
+}
+
+.section-position-input {
+  border-top: 1px solid #333;
+  padding-top: 10px;
+}
+
+.section-position-spacing {
+  padding-left: 15px;
+}
+
+.btn-remove {
+  margin-bottom: 15px;
+}

@@ -1,3 +1,12 @@
-<p>
-  login works!
-</p>
+<div class="hgroup">
+  <img [src]="logoImg" alt="Blu Logo" class="login-logo"/>
+  <h1>Online requisition</h1>
+</div>
+
+<md-card class="login-card">
+  <md-card-content>
+    <button class="btn-lg" color="primary" md-raised-button (click)="redirect()">Sign In</button>
+  </md-card-content>
+</md-card>    
+
+

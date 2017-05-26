@@ -1,36 +1,110 @@
-<div *ngIf="!post; else forminfo">
-  <form [formGroup]="rForm" (ngSubmit)="addPost(rForm.value)">
-    <md-radio-group class="example-radio-group" formControlName="type">
-      <md-radio-button class="example-radio-button" *ngFor="let type of types" [value]="type">
-        {{type}}
-      </md-radio-button>
-      
-    </md-radio-group>
-    <md-hint align="end" *ngIf="!rForm.controls['type'].valid && rForm.controls['type'].touched">Please indicate the requisition type</md-hint>
-    
-    <br>
-    <md-select placeholder="Site" formControlName="site">
-      <md-option *ngFor="let site of sites" [value]="site">
-        {{site.viewValue}}
-      </md-option>
-    </md-select>
-    <md-hint align="end" *ngIf="!rForm.controls['site'].valid && rForm.controls['site'].touched">Please indicate the requisition site</md-hint>
+<md-toolbar color="primary">
+    <span>New requisition</span>
 
-    <br>
-    <md-input-container class="example-full-width">
-      <input mdInput  type="text" formControlName="name" placeholder="name">
-      <md-hint  align="end" *ngIf="!rForm.controls['name'].valid && rForm.controls['name'].touched">Name Please</md-hint>
-    </md-input-container>
+    <span class="spacer"></span>
+    <button md-icon-button [mdMenuTriggerFor]="menu">
+      <md-icon>more_vert</md-icon>
+    </button>
+    <md-menu #menu="mdMenu">
+      <button md-menu-item (click)="redirect('login')">
+          <md-icon>fingerprint</md-icon>
+          <span >Logout</span>
+        </button>
+    </md-menu>
+</md-toolbar>
 
-    <br>
-    <button md-raised-button type="submit" color="primary" [disabled]="!rForm.valid">Raised button</button>
-  </form>
-</div>
+<md-card *ngIf="!post; else forminfo">
+  <md-card-content>
+    <form [formGroup]="userForm" (ngSubmit)="onFormSubmit()" novalidate>
+  
+      <h4>Requisition type</h4>
+      <section>
+        <md-radio-group>
+          <md-radio-button *ngFor="let type of types; index as idx" [value]="type">
+            {{type}}
+          </md-radio-button>
+        </md-radio-group>
+      </section>
+
+      <section>
+        <md-input-container>
+          <input type="text" mdInput name="start" placeholder="Start date" required>
+          <md-error>This field is required</md-error>
+        </md-input-container>
+      </section>
+
+      <section>
+        <md-input-container>
+          <input type="text" mdInput name="start" placeholder="End date" required>
+          <md-error>This field is required</md-error>
+        </md-input-container>
+      </section>
+
+      <section>
+        <md-select placeholder="Site" required>
+          <md-option *ngFor="let site of sites; index as idx" [value]="site">
+            {{site.viewValue}}
+          </md-option>
+        </md-select>
+      </section>
+
+      <section>
+        <md-select placeholder="Site Type" required>
+          <md-option *ngFor="let type of siteTypes; index as idx" [value]="type">
+            {{type.viewValue}}
+          </md-option>
+        </md-select>
+      </section>
+
+      <section>
+        <md-select placeholder="Department" required>
+          <md-option *ngFor="let department of departments; index as idx" [value]="department">
+            {{department.viewValue}}
+          </md-option>
+        </md-select>
+      </section>
+
+      <section>
+        <md-select placeholder="Shift" required>
+          <md-option *ngFor="let shift of shifts; index as idx" [value]="shift">
+            {{shift.viewValue}}
+          </md-option>
+        </md-select>
+      </section>
+
+      <section formArrayName="users" class="section-position">
+        <div *ngFor="let user of users.controls; index as idx" [className]="idx > 0 ? 'section-position-input section-position-spacing' : 'section-position-spacing'">
+          <md-input-container>
+            <input type="text" mdInput [formControlName]="idx" placeholder="Position" required>
+            <md-error>This field is required</md-error>
+          </md-input-container>
+          <md-input-container >
+            <input type="number" mdInput [formControlName]="idx" placeholder="Number" required>
+            <md-error>This field is required</md-error>
+          </md-input-container>
+          <md-input-container >
+            <input type="text" mdInput [formControlName]="idx" placeholder="Justifiable Reason" required>
+            <md-error>This field is required</md-error>
+          </md-input-container>
+          <button *ngIf="idx > 0" type="submit" class="btn-remove" color="default" md-raised-button (click)="deleteUserField(idx)">remove</button>
+        </div>
+      </section>
+
+      <section>
+          <a (click)="addUserField()" style="cursor: pointer; float: right; display:block">
+            ADD ANOTHER POSITION
+          </a>
+      </section>
+      <button type="submit" class="md-button-full" color="primary" md-raised-button>Submit for Approval</button>
+    </form>
+  </md-card-content>
+</md-card>
 
 <ng-template #forminfo>
-  <div class="form-container">
-    <div class="row columns">
-        <h1>{{ post | json }}</h1>
-    </div>
-  </div>
-</ng-template>
+  <md-card>
+    <md-card-content>
+      <h1>Thank you </h1>
+      <p>Order succefully submitted and sent for approval</p>
+    </md-card-content>
+  </md-card> 
+</ng-template>  

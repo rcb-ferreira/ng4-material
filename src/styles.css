@@ -7,16 +7,27 @@
     flex: 1 1 auto;
 }
 
-.md-slider-horizontal {
-    width:100%;
+* { box-sizing:border-box; }
+
+body {
+	background: #333;
+    margin: 0;
+  -webkit-font-smoothing: antialiased;
+  font-family: 'Roboto', sans-serif;
 }
 
-/*label {
-    font-weight:bold;
-    margin:1.5em 0;
-    display:block;
-}*/
+.group { 
+	position: relative; 
+	margin-bottom: 45px; 
+}
 
-#page-padding {
-    padding: 0 1.5em 1.5em 1.5em;
+/* Button */
+.btn-lg {
+	padding: 10px !important;
+	margin: .3em 0 1.3em 0 !important;
+	width: 100%;
+	vertical-align: middle;
+	font-size: 16px;
+	line-height: 20px;
+	text-transform: uppercase;
 }

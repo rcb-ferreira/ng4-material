@@ -3,14 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { RequisitionComponent } from './requisition/requisition.component';
 import { LoginComponent } from './login/login.component';
-import { MyCompaniesComponent } from './my-companies/my-companies.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login',  component: LoginComponent },
   { path: 'requisition',  component: RequisitionComponent },
-  { path: 'my-companies',  component: MyCompaniesComponent },
-  { path: '**', redirectTo: '' }
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({

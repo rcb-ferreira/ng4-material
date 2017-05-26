@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-requisition',
@@ -7,6 +8,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./requisition.component.css']
 })
 export class RequisitionComponent {
+
+  post:any;
+
+  constructor(private router: Router) { }
   types = [
     'Ad-hoc',
     'Weekly schedule'
@@ -18,26 +23,57 @@ export class RequisitionComponent {
     {value: 'site-2', viewValue: 'Site Three'}
   ];
 
-  rForm: FormGroup;
-  post:any;                     // A property for our submitted form                     // A property for our submitted form
-  type:string = '';
-  site:string = '';
-  name:string = '';
-  titleAlert:string = 'This field is required';
+  siteTypes = [
+    {value: 'type-0', viewValue: 'Types One'},
+    {value: 'type-1', viewValue: 'Types Two'},
+    {value: 'tupe-2', viewValue: 'Types Three'}
+  ];
 
-  constructor(private fb: FormBuilder) {
+  departments = [
+    {value: 'type-0', viewValue: 'Department One'},
+    {value: 'type-1', viewValue: 'Department Two'},
+    {value: 'tupe-2', viewValue: 'Department Three'}
+  ];
 
-    this.rForm = fb.group({
-      'type' : [null, Validators.required],
-      'site' : [null, Validators.required],
-      'name' : [null, Validators.required],
-    });
+  shifts = [
+    {value: 'type-0', viewValue: 'Shift One'},
+    {value: 'type-1', viewValue: 'Shift Two'},
+    {value: 'tupe-2', viewValue: 'Shift Three'}
+  ];
 
+  userForm = new FormGroup({
+    users: new FormArray([
+      new FormControl(''),
+    ])
+  });
+
+  get users(): FormArray { 
+     return this.userForm.get('users') as FormArray; 
   }
 
-  addPost(post) {
-    console.log(post);
-    this.post = post;
+  addUserField() { 
+     this.users.push(new FormControl()); 
   }
+
+  deleteUserField(index: number) {
+     this.users.removeAt(index);
+  }
+
+  onFormSubmit() {
+    console.log(this.users.value); // Gives FormArray data
+    console.log(this.userForm.value); // Gives Complete form data
+
+    //Iterate FormArray
+    for(let i = 0; i < this.users.length; i++) {
+      console.log(this.users.at(i).value);
+    }
+
+    this.post = true;
+  }
+
+  redirect(value) {
+    this.router.navigateByUrl(`/${value}`);
+  }
+
 }
 
