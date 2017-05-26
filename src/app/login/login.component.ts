@@ -14,7 +14,7 @@ export class LoginComponent {
   logoImg: string = '';
 
   constructor(private router: Router) {
-    this.logoImg = '/assets/logo@2x.png'
+    this.logoImg = 'assets/logo@2x.png'
   }
 
   redirect() {
