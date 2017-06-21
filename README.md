@@ -27,6 +27,5 @@ Before running the tests make sure you are serving the app via `ng serve`.
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
-## How to deploy to github
-[github pages deploy]
-(https://www.npmjs.com/package/angular-cli-ghpages)
+## Deploying to github pages
+Install npm i -g angular-cli-ghpages Read more from [github pages deploy](https://www.npmjs.com/package/angular-cli-ghpages)
